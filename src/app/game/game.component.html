@@ -1,0 +1,37 @@
+ <!-- src/app/game/game.component.html -->
+ <div class="game-container">
+    <h1>{{ dimension }}x{{ dimension }} Tic-Tac-Toe ({{ players.join(', ') }}) - Win with {{ winCondition }}</h1>
+
+    <!-- Game Status Message -->
+    <div class="status">
+      <ng-container *ngIf="!gameOver">
+        <h2>Player Turn: <span class="player-{{currentPlayer}}">{{ currentPlayer }}</span></h2>
+      </ng-container>
+      <ng-container *ngIf="gameOver">
+        <h2 *ngIf="winner === 'Draw'" class="winner draw">It's a Draw!</h2>
+        <h2 *ngIf="winner && winner !== 'Draw'" class="winner player-{{winner}}">Player {{ winner }} Wins!</h2>
+        <button (click)="resetGame()" class="reset-button">Play Again?</button>
+      </ng-container>
+    </div>
+
+    <!-- Game Board -->
+    <div class="board" [style.grid-template-columns]="'repeat(' + dimension + ', 1fr)'">
+      <!-- Removed the extra div.board-row as grid handles rows directly -->
+      <ng-container *ngFor="let row of board; let i = index">
+         <button
+          *ngFor="let cell of row; let j = index"
+          class="cell player-{{cell}}"
+          [class.winning-cell]="isWinningCell(i, j)"
+          (click)="makeMove(i, j)"
+          [disabled]="gameOver || !!cell"
+          [attr.aria-label]="'Cell ' + (i+1) + ', ' + (j+1) + (cell ? ' played by ' + cell : ' empty')">
+          {{ cell }}
+        </button>
+      </ng-container>
+    </div>
+
+    <!-- Reset button always visible at the bottom -->
+     <div *ngIf="!gameOver" class="reset-container-bottom">
+        <button (click)="resetGame()" class="reset-button">Reset Game</button>
+     </div>
+  </div>

@@ -1,0 +1,44 @@
+  # See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and configuration files
+.idea/
+*.iml
+*.swp
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Misc
+/.angular/cache
+.npm/
+.lock-wscript
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Optional Yarn v2 configuration files
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

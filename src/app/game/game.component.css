@@ -1,0 +1,114 @@
+  /* src/app/game/game.component.css */
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    padding: 20px;
+  }
+
+  .status {
+    margin-bottom: 20px;
+    min-height: 60px; /* Prevent layout shift when button appears */
+    text-align: center;
+  }
+
+  .status h2 {
+    margin: 0 0 10px 0;
+  }
+
+  .winner {
+    font-weight: bold;
+    color: green;
+  }
+  .draw {
+      color: orange;
+  }
+
+  .board {
+    display: grid;
+    /* grid-template-columns: repeat(5, 1fr); Set dynamically in template */
+    gap: 5px;
+    width: 80vmin; /* Responsive width */
+    max-width: 500px; /* Max size */
+    height: 500px; /* Max size */
+    aspect-ratio: 1 / 1; /* Keep it square */
+    border: 2px solid #333;
+    background-color: #eee;
+    padding: 5px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Removed .board-row styles as it's no longer needed with direct grid */
+
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: clamp(1rem, 8vw, 3rem); /* Responsive font size */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    aspect-ratio: 1 / 1; /* Ensure cells are square */
+    color: #333; /* Default text color */
+    padding: 0; /* Remove default button padding */
+    line-height: 1; /* Ensure text is centered vertically */
+  }
+
+  .cell:hover:not(:disabled) {
+    background-color: #f0f0f0;
+  }
+
+  .cell:disabled {
+    cursor: not-allowed;
+    /* Keep background color consistent when disabled but filled */
+     background-color: #fff;
+     opacity: 0.8; /* Slightly fade already played cells */
+  }
+  /* Ensure filled disabled cells don't change hover state */
+  .cell:disabled:hover {
+    background-color: #fff;
+  }
+
+
+  /* Player-specific styles */
+  .player-X { color: #007bff; } /* Blue */
+  .player-O { color: #dc3545; } /* Red */
+  .player-Z { color: #28a745; } /* Green */
+  /* You can add more styles for more players */
+
+  /* Highlight winning cells */
+  .winning-cell {
+    background-color: yellow !important; /* Use !important to override other states if needed */
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+
+  .reset-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    margin-top: 5px; /* Add some space if it's below the winner message */
+  }
+
+  .reset-button:hover {
+    background-color: #5a6268;
+  }
+
+  .reset-container-bottom {
+      margin-top: 20px;
+      text-align: center; /* Center the bottom reset button */
+  }
